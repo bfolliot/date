@@ -1,0 +1,18 @@
+{
+    "name": "bfolliot/date",
+    "description": "Provides additional functionality for date manipulation in PHP",
+    "authors": [
+        {
+            "name": "Bryan Folliot",
+            "email": "dev@bryanfolliot.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "BFolliot\\Date\\": "src/"
+        }
+    }    
+}
