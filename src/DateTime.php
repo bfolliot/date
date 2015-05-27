@@ -13,6 +13,7 @@ class DateTime extends \DateTime
 
     /**
      * Format according to locale settings
+     * See http://php.net/manual/en/function.strftime.php
      * @param (string) $format : Format accepted by strftime().
      * @return Returns a string formatted according format. Month and weekday names and other language-dependent strings respect the current locale set with setlocale(). 
      */
@@ -20,4 +21,21 @@ class DateTime extends \DateTime
     {
         return strftime($format, $this->getTimestamp());
     }
+
+    /**
+     * Returns new DateTime object formatted according to the specified format. 
+     * See http://php.net/manual/en/datetime.createfromformat.php
+     */
+    static public function createFromFormat($format, $time, $timeZone = null)
+    {
+        if($timeZone instanceof \DateTimeZone){
+            $parentDateTime = parent::createFromFormat($format, $time, $timeZone);
+        } else {            
+            $parentDateTime = parent::createFromFormat($format, $time);
+        }
+
+        $dateTime = new static();
+        $dateTime->setTimestamp($parentDateTime->getTimestamp());
+        return $dateTime;
+    } 
 }
