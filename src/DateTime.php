@@ -33,9 +33,12 @@ class DateTime extends \DateTime
         } else {            
             $parentDateTime = parent::createFromFormat($format, $time);
         }
-
-        $dateTime = new static();
-        $dateTime->setTimestamp($parentDateTime->getTimestamp());
-        return $dateTime;
+        
+        if($parentDateTime instanceof \DateTime){
+            $dateTime = new static();
+            $dateTime->setTimestamp($parentDateTime->getTimestamp());
+            return $dateTime;            
+        }
+        return $parentDateTime;
     } 
 }
